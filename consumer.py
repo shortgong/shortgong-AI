@@ -20,7 +20,7 @@ def on_message(channel, method_frame, header_frame, body):
             update_video_content(video_id, title, content)
             update_video_status(video_id, COMPLETED)
         except Exception as e:
-            print(e)
+            print(f"Inner Error: {e}")
             update_video_status(video_id, FAILED)
             channel.basic_reject(delivery_tag=method_frame.delivery_tag, requeue=False)
         else:
